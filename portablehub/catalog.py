@@ -96,6 +96,9 @@ def load_catalog(settings: Optional[dict] = None, force_refresh: bool = False) -
         cached = cfg.load_catalog_cache()
         if validate_catalog(cached):
             return {"apps": cached.get("apps", []), "source": "cache"}
+        bundled = cfg.bundled_catalog()
+        if validate_catalog(bundled):
+            return {"apps": bundled.get("apps", []), "source": "bundled"}
         return {"apps": [], "source": "empty"}
 
 
@@ -104,6 +107,9 @@ def load_catalog_offline() -> dict:
     cached = cfg.load_catalog_cache()
     if validate_catalog(cached):
         return {"apps": cached.get("apps", []), "source": "cache"}
+    bundled = cfg.bundled_catalog()
+    if validate_catalog(bundled):
+        return {"apps": bundled.get("apps", []), "source": "bundled"}
     return {"apps": [], "source": "empty"}
 
 

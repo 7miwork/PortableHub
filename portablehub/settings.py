@@ -92,3 +92,15 @@ def save_catalog_cache(catalog: dict) -> None:
 def load_catalog_cache() -> dict:
     data = _read_json(catalog_cache_path(), {})
     return data if isinstance(data, dict) else {}
+
+
+def bundled_catalog() -> dict:
+    """Katalog, der per PyInstaller mitgeliefert wurde (optional)."""
+    try:
+        if getattr(sys, "frozen", False):
+            base = Path(sys._MEIPASS)
+        else:
+            base = app_root()
+        return _read_json(base / "catalog.json", {})
+    except Exception:
+        return {}
