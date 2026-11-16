@@ -5,5 +5,9 @@ __pycache__/
 *.zip
 *.tmp
 *.egg-info/
-PortableHub/
+# Lokale Programmdaten (Sticky-Layout: <Wurzel>/PortableHub/)
+PortableHub/installed.json
+PortableHub/settings.json
+PortableHub/catalog_cache.json
+PortableHub/tmp/
 Apps/
